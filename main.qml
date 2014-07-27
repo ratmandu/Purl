@@ -1,24 +1,27 @@
 import QtQuick 2.2
+import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.1
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Hello World")
+    width: 1280
+    height: 1024
+    title: qsTr("Purl")
 
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("File")
-            MenuItem {
-                text: qsTr("Exit")
-                onTriggered: Qt.quit();
-            }
-        }
+    menuBar: PurlMenuBar {}
+    toolBar: PurlToolbar {}
+
+    FileDialog {
+      id: fileDialog
     }
 
-    Text {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
+    Action {
+      id: openAction
+      text: "&Open"
+      shortcut: StandardKey.Open
+      iconName: "edit-open"
+      onTriggered: fileDialog.open()
+      tooltip: "Open an image"
     }
+
 }

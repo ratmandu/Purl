@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>PurlMenuBar.qml</file>
+        <file>PatternGrid.qml</file>
+        <file>PurlToolbar.qml</file>
+        <file>PatternGridToolbar.qml</file>
     </qresource>
 </RCC>
