@@ -41,10 +41,19 @@ void PatternGrid::paint(QPainter *painter)
   int c = columns();
 
   for (int i = 0; i < columns(); i++) {
-    painter->drawText(((i * cellWidth()) + cellWidth()/2) + leftMargin() - 5, ((rows() * cellHeight()) + 20) + topMargin(), QString::number(c--));
+    int x = ((i * cellWidth())) + leftMargin();
+    int y = ((rows() * cellHeight())) + topMargin();
+
+    painter->drawText(QRect(x, y, cellWidth(), cellHeight()), Qt::AlignCenter, QString::number(c--));
+
+//    painter->drawText(((i * cellWidth()) + cellWidth()/2) + leftMargin() - 5, ((rows() * cellHeight()) + 20) + topMargin(), QString::number(c--));
   }
 
   for (int i = 0; i < rows(); i++) {
-    painter->drawText(((columns() * cellWidth()) + cellWidth()/2) + leftMargin(), ((i * cellHeight()) + cellHeight()/2) + topMargin() + 5, QString::number(r--));
+    int x = (columns() * cellWidth()) + leftMargin();
+    int y = (i * cellHeight()) + topMargin();
+
+    painter->drawText(QRect(x, y, cellWidth(), cellHeight()), Qt::AlignCenter, QString::number(r--));
+//    painter->drawText(((columns() * cellWidth()) + cellWidth()/2) + leftMargin(), ((i * cellHeight()) + cellHeight()/2) + topMargin() + 5, QString::number(r--));
   }
 }
