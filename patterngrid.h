@@ -1,11 +1,14 @@
 #ifndef PATTERNGRID_H
 #define PATTERNGRID_H
 
-#include <QQuickItem>
 #include <QQuickPaintedItem>
 #include <QGraphicsItem>
+#include <QMouseEvent>
+#include <QHoverEvent>
+#include <QQuickItem>
 #include <QPainter>
 #include <QWidget>
+#include <QDebug>
 
 class PatternGrid : public QQuickPaintedItem
 {
@@ -16,6 +19,8 @@ class PatternGrid : public QQuickPaintedItem
   Q_PROPERTY(int cellHeight READ cellHeight WRITE setCellHeight NOTIFY cellHeightChanged)
   Q_PROPERTY(int leftMargin READ leftMargin WRITE setLeftMargin NOTIFY leftMarginChanged)
   Q_PROPERTY(int topMargin READ topMargin WRITE setTopMargin NOTIFY topMarginChanged)
+  Q_PROPERTY(int mouseX READ mouseX WRITE setMouseX NOTIFY mouseXChanged)
+  Q_PROPERTY(int mouseY READ mouseY WRITE setMouseY NOTIFY mouseYChanged)
 
   int m_rows;
   int m_columns;
@@ -23,10 +28,15 @@ class PatternGrid : public QQuickPaintedItem
   int m_cellHeight;
   int m_topMargin;
   int m_leftMargin;
+  int m_mouseX;
+  int m_mouseY;
 
 public:
   explicit PatternGrid(QQuickItem *parent = 0);
   void paint(QPainter *painter);
+  void mouseMoveEvent(QMouseEvent *e);
+  void mousePressEvent(QMouseEvent *e);
+  void hoverMoveEvent(QHoverEvent *e);
 
   int rows() const
   {
@@ -58,6 +68,16 @@ public:
     return m_leftMargin;
   }
 
+  int mouseX() const
+  {
+    return m_mouseX;
+  }
+
+  int mouseY() const
+  {
+    return m_mouseY;
+  }
+
 signals:
   void rowsChanged(int arg);
   void columnsChanged(int arg);
@@ -65,6 +85,10 @@ signals:
   void cellHeightChanged(int arg);
   void topMarginChanged(int arg);
   void leftMarginChanged(int arg);
+
+  void mouseXChanged(int arg);
+
+  void mouseYChanged(int arg);
 
 public slots:
 
@@ -113,6 +137,22 @@ public slots:
     if (m_leftMargin != arg) {
       m_leftMargin = arg;
       emit leftMarginChanged(arg);
+      update();
+    }
+  }
+  void setMouseX(int arg)
+  {
+    if (m_mouseX != arg) {
+      m_mouseX = arg;
+      emit mouseXChanged(arg);
+      update();
+    }
+  }
+  void setMouseY(int arg)
+  {
+    if (m_mouseY != arg) {
+      m_mouseY = arg;
+      emit mouseYChanged(arg);
       update();
     }
   }

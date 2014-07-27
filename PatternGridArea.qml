@@ -13,6 +13,7 @@ Rectangle {
     anchors.bottom: parent.bottom
 
     PatternGrid {
+      focus: true
       id: patternGrid
       anchors.fill: parent
 
@@ -20,6 +21,8 @@ Rectangle {
       rows: toolBar.numberOfRows
       cellHeight: toolBar.cellHeight
       cellWidth: toolBar.cellWidth
+
+//      onMouseXChanged: console.log(mouseX)
     }
   }
 }

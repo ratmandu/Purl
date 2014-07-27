@@ -9,14 +9,21 @@ PatternGrid::PatternGrid(QQuickItem *parent) :
   m_topMargin(25),
   m_leftMargin(25)
 {
-  // need to set the ItemHasNoContents flas to false so the Paint() method gets called
-//  setFlag(QQuickPaintedItem::ItemHasContents, true);
+  setAcceptHoverEvents(true);
+  setAcceptedMouseButtons(Qt::AllButtons);
 }
 
 void PatternGrid::paint(QPainter *painter)
 {
+  // set the mouse position
+  QPoint mousePos(mouseX(), mouseY());
+
   // We want a black brush
   QBrush brush(Qt::black);
+
+  // and a brush for highlighting current cell
+  QBrush highlight(QColor(155, 189, 252, 128));
+  QBrush greyBrush(QColor(0, 0, 0, 16));
 
   // 1 pixel wide black pen
   QPen pen(brush, 1);
@@ -31,8 +38,25 @@ void PatternGrid::paint(QPainter *painter)
 
   // Lets draw the grid
   for (int i = 0; i < rows(); i++) {
+    QRect rowRect(leftMargin(), (i * cellHeight()) + topMargin(), cellWidth() * columns(), cellHeight());
     for (int j = 0; j < columns(); j++) {
-      painter->drawRect((j * cellWidth()) + leftMargin(), (i * cellHeight()) + topMargin(), cellWidth(), cellHeight());
+      int x = (j * cellWidth()) + leftMargin();
+      int y = (i * cellHeight()) + topMargin();
+      QRect columnRect((j * cellWidth()) + leftMargin(), topMargin(), cellWidth(), cellHeight() * rows());
+      QRect rect(x, y, cellWidth(), cellHeight());
+      if (rect.contains(mousePos)) {
+        QBrush oldBrush = painter->brush();
+        painter->setBrush(highlight);
+        painter->drawRect(rect);
+        painter->setBrush(oldBrush);
+      } else if (rowRect.contains(mousePos) || columnRect.contains(mousePos)) {
+        QBrush oldBrush = painter->brush();
+        painter->setBrush(greyBrush);
+        painter->drawRect(rect);
+        painter->setBrush(oldBrush);
+      } else {
+        painter->drawRect(rect);
+      }
     }
   }
 
@@ -56,4 +80,21 @@ void PatternGrid::paint(QPainter *painter)
     painter->drawText(QRect(x, y, cellWidth(), cellHeight()), Qt::AlignCenter, QString::number(r--));
 //    painter->drawText(((columns() * cellWidth()) + cellWidth()/2) + leftMargin(), ((i * cellHeight()) + cellHeight()/2) + topMargin() + 5, QString::number(r--));
   }
+}
+
+void PatternGrid::mouseMoveEvent(QMouseEvent *e)
+{
+  setMouseX(e->x());
+  setMouseY(e->y());
+}
+
+void PatternGrid::mousePressEvent(QMouseEvent *e)
+{
+  qDebug() << e->x() << e->y();
+}
+
+void PatternGrid::hoverMoveEvent(QHoverEvent *e)
+{
+  setMouseX(e->pos().x());
+  setMouseY(e->pos().y());
 }
