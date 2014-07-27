@@ -2,28 +2,27 @@
 #define PATTERNGRID_H
 
 #include <QQuickItem>
+#include <QQuickPaintedItem>
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QWidget>
 
-class PatternGrid : public QQuickItem
+class PatternGrid : public QQuickPaintedItem
 {
   Q_OBJECT
   Q_PROPERTY(int rows READ rows WRITE setRows NOTIFY rowsChanged)
   Q_PROPERTY(int columns READ columns WRITE setColumns NOTIFY columnsChanged)
   Q_PROPERTY(int cellWidth READ cellWidth WRITE setCellWidth NOTIFY cellWidthChanged)
   Q_PROPERTY(int cellHeight READ cellHeight WRITE setCellHeight NOTIFY cellHeightChanged)
+
   int m_rows;
-
   int m_columns;
-
   int m_cellWidth;
-
   int m_cellHeight;
 
 public:
   explicit PatternGrid(QQuickItem *parent = 0);
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+  void paint(QPainter *painter);
 
   int rows() const
   {
