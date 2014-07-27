@@ -5,5 +5,7 @@
         <file>PatternGrid.qml</file>
         <file>PurlToolbar.qml</file>
         <file>PatternGridToolbar.qml</file>
+        <file>PurlLeftBar.qml</file>
+        <file>PatternGridArea.qml</file>
     </qresource>
 </RCC>
