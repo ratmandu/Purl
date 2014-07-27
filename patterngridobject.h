@@ -2,6 +2,7 @@
 #define PATTERNGRIDOBJECT_H
 
 #include <QObject>
+#include <QColor>
 #include <QRect>
 
 class PatternGridObject : public QObject
@@ -9,7 +10,7 @@ class PatternGridObject : public QObject
   Q_OBJECT
 public:
   explicit PatternGridObject(QObject *parent = 0);
-
+  explicit PatternGridObject(int cellColumn, int cellRow, QObject *parent = 0);
   QRect getRect() const;
   void setRect(const QRect &value);
 

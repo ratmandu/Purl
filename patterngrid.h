@@ -9,6 +9,9 @@
 #include <QPainter>
 #include <QWidget>
 #include <QDebug>
+#include <QHash>
+
+#include "patterngridobject.h"
 
 class PatternGrid : public QQuickPaintedItem
 {
@@ -77,6 +80,9 @@ public:
   {
     return m_mouseY;
   }
+
+private:
+  QHash<QPoint, PatternGridObject*> cells;
 
 signals:
   void rowsChanged(int arg);

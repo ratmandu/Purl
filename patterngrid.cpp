@@ -1,5 +1,11 @@
 #include "patterngrid.h"
 
+// quick function to use QHash with a QPoint as the key... assuming x < 4000
+static uint qHash(const QPoint& p)
+{
+    return p.x() * 4000 + p.y();
+}
+
 PatternGrid::PatternGrid(QQuickItem *parent) :
   QQuickPaintedItem(parent),
   m_cellWidth(50),
@@ -11,6 +17,13 @@ PatternGrid::PatternGrid(QQuickItem *parent) :
 {
   setAcceptHoverEvents(true);
   setAcceptedMouseButtons(Qt::AllButtons);
+
+  for (int i = 0; i < rows(); i++) {
+    for (int j = 0; j < columns(); j++) {
+      cells.insert(QPoint(j, i), new PatternGridObject(j, i));
+      cells.value(QPoint(j, i))->setRect(QRect((j * cellWidth()) + leftMargin(), (i * cellWidth()) + topMargin(), cellWidth(), cellHeight()));
+    }
+  }
 }
 
 void PatternGrid::paint(QPainter *painter)
@@ -40,22 +53,19 @@ void PatternGrid::paint(QPainter *painter)
   for (int i = 0; i < rows(); i++) {
     QRect rowRect(leftMargin(), (i * cellHeight()) + topMargin(), cellWidth() * columns(), cellHeight());
     for (int j = 0; j < columns(); j++) {
-      int x = (j * cellWidth()) + leftMargin();
-      int y = (i * cellHeight()) + topMargin();
       QRect columnRect((j * cellWidth()) + leftMargin(), topMargin(), cellWidth(), cellHeight() * rows());
-      QRect rect(x, y, cellWidth(), cellHeight());
-      if (rect.contains(mousePos)) {
+      if (cells.value(QPoint(j, i))->getRect().contains(mousePos)) {
         QBrush oldBrush = painter->brush();
         painter->setBrush(highlight);
-        painter->drawRect(rect);
+        painter->drawRect(cells.value(QPoint(j, i))->getRect());
         painter->setBrush(oldBrush);
       } else if (rowRect.contains(mousePos) || columnRect.contains(mousePos)) {
         QBrush oldBrush = painter->brush();
         painter->setBrush(greyBrush);
-        painter->drawRect(rect);
+        painter->drawRect(cells.value(QPoint(j, i))->getRect());
         painter->setBrush(oldBrush);
       } else {
-        painter->drawRect(rect);
+        painter->drawRect(cells.value(QPoint(j, i))->getRect());
       }
     }
   }
