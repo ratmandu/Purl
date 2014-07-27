@@ -3,7 +3,8 @@ TEMPLATE = app
 QT += qml quick widgets
 
 SOURCES += main.cpp \
-    patterngrid.cpp
+    patterngrid.cpp \
+    patterngridobject.cpp
 
 RESOURCES += qml.qrc
 
@@ -14,4 +15,5 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    patterngrid.h
+    patterngrid.h \
+    patterngridobject.h
