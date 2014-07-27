@@ -6,8 +6,15 @@ Rectangle {
     id: toolBar
   }
 
-  PatternGrid {
-    id: patternGrid
-    anchors.fill: parent
+  Rectangle {
+    anchors.top: toolBar.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+
+    PatternGrid {
+      id: patternGrid
+      anchors.fill: parent
+    }
   }
 }

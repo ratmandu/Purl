@@ -14,11 +14,15 @@ class PatternGrid : public QQuickPaintedItem
   Q_PROPERTY(int columns READ columns WRITE setColumns NOTIFY columnsChanged)
   Q_PROPERTY(int cellWidth READ cellWidth WRITE setCellWidth NOTIFY cellWidthChanged)
   Q_PROPERTY(int cellHeight READ cellHeight WRITE setCellHeight NOTIFY cellHeightChanged)
+  Q_PROPERTY(int leftMargin READ leftMargin WRITE setLeftMargin NOTIFY leftMarginChanged)
+  Q_PROPERTY(int topMargin READ topMargin WRITE setTopMargin NOTIFY topMarginChanged)
 
   int m_rows;
   int m_columns;
   int m_cellWidth;
   int m_cellHeight;
+  int m_topMargin;
+  int m_leftMargin;
 
 public:
   explicit PatternGrid(QQuickItem *parent = 0);
@@ -44,15 +48,23 @@ public:
     return m_cellHeight;
   }
 
+  int topMargin() const
+  {
+    return m_topMargin;
+  }
+
+  int leftMargin() const
+  {
+    return m_leftMargin;
+  }
+
 signals:
-
   void rowsChanged(int arg);
-
   void columnsChanged(int arg);
-
   void cellWidthChanged(int arg);
-
   void cellHeightChanged(int arg);
+  void topMarginChanged(int arg);
+  void leftMarginChanged(int arg);
 
 public slots:
 
@@ -82,6 +94,20 @@ public slots:
     if (m_cellHeight != arg) {
       m_cellHeight = arg;
       emit cellHeightChanged(arg);
+    }
+  }
+  void setTopMargin(int arg)
+  {
+    if (m_topMargin != arg) {
+      m_topMargin = arg;
+      emit topMarginChanged(arg);
+    }
+  }
+  void setLeftMargin(int arg)
+  {
+    if (m_leftMargin != arg) {
+      m_leftMargin = arg;
+      emit leftMarginChanged(arg);
     }
   }
 };
