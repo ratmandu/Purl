@@ -41,7 +41,7 @@ void PatternGrid::paint(QPainter *painter)
   int c = columns();
 
   for (int i = 0; i < columns(); i++) {
-    painter->drawText(((i * cellWidth()) + cellWidth()/2) + leftMargin() - 5, ((rows() * cellHeight()) + cellHeight()/2) + topMargin(), QString::number(c--));
+    painter->drawText(((i * cellWidth()) + cellWidth()/2) + leftMargin() - 5, ((rows() * cellHeight()) + 20) + topMargin(), QString::number(c--));
   }
 
   for (int i = 0; i < rows(); i++) {

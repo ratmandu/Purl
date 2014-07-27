@@ -73,6 +73,7 @@ public slots:
     if (m_rows != arg) {
       m_rows = arg;
       emit rowsChanged(arg);
+      update();
     }
   }
   void setColumns(int arg)
@@ -80,6 +81,7 @@ public slots:
     if (m_columns != arg) {
       m_columns = arg;
       emit columnsChanged(arg);
+      update();
     }
   }
   void setCellWidth(int arg)
@@ -87,6 +89,7 @@ public slots:
     if (m_cellWidth != arg) {
       m_cellWidth = arg;
       emit cellWidthChanged(arg);
+      update();
     }
   }
   void setCellHeight(int arg)
@@ -94,6 +97,7 @@ public slots:
     if (m_cellHeight != arg) {
       m_cellHeight = arg;
       emit cellHeightChanged(arg);
+      update();
     }
   }
   void setTopMargin(int arg)
@@ -101,6 +105,7 @@ public slots:
     if (m_topMargin != arg) {
       m_topMargin = arg;
       emit topMarginChanged(arg);
+      update();
     }
   }
   void setLeftMargin(int arg)
@@ -108,6 +113,7 @@ public slots:
     if (m_leftMargin != arg) {
       m_leftMargin = arg;
       emit leftMarginChanged(arg);
+      update();
     }
   }
 };

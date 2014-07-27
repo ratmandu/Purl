@@ -15,6 +15,11 @@ Rectangle {
     PatternGrid {
       id: patternGrid
       anchors.fill: parent
+
+      columns: toolBar.numberOfColumns
+      rows: toolBar.numberOfRows
+      cellHeight: toolBar.cellHeight
+      cellWidth: toolBar.cellWidth
     }
   }
 }
