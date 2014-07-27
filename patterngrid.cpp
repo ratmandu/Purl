@@ -36,6 +36,8 @@ void PatternGrid::paint(QPainter *painter)
 
   // and a brush for highlighting current cell
   QBrush highlight(QColor(155, 189, 252, 128));
+
+  // and a brush for highlighting the current row and column
   QBrush greyBrush(QColor(0, 0, 0, 16));
 
   // 1 pixel wide black pen
@@ -51,6 +53,7 @@ void PatternGrid::paint(QPainter *painter)
 
   // Lets draw the grid
   for (int i = 0; i < rows(); i++) {
+    // Rectangle holding the whole row, for row highlighting detection
     QRect rowRect(leftMargin(), (i * cellHeight()) + topMargin(), cellWidth() * columns(), cellHeight());
     for (int j = 0; j < columns(); j++) {
       QRect columnRect((j * cellWidth()) + leftMargin(), topMargin(), cellWidth(), cellHeight() * rows());
@@ -74,21 +77,20 @@ void PatternGrid::paint(QPainter *painter)
   int r = rows();
   int c = columns();
 
+  // Columns
   for (int i = 0; i < columns(); i++) {
     int x = ((i * cellWidth())) + leftMargin();
     int y = ((rows() * cellHeight())) + topMargin();
 
     painter->drawText(QRect(x, y, cellWidth(), cellHeight()), Qt::AlignCenter, QString::number(c--));
-
-//    painter->drawText(((i * cellWidth()) + cellWidth()/2) + leftMargin() - 5, ((rows() * cellHeight()) + 20) + topMargin(), QString::number(c--));
   }
 
+  // Rows
   for (int i = 0; i < rows(); i++) {
     int x = (columns() * cellWidth()) + leftMargin();
     int y = (i * cellHeight()) + topMargin();
 
     painter->drawText(QRect(x, y, cellWidth(), cellHeight()), Qt::AlignCenter, QString::number(r--));
-//    painter->drawText(((columns() * cellWidth()) + cellWidth()/2) + leftMargin(), ((i * cellHeight()) + cellHeight()/2) + topMargin() + 5, QString::number(r--));
   }
 }
 
@@ -107,4 +109,31 @@ void PatternGrid::hoverMoveEvent(QHoverEvent *e)
 {
   setMouseX(e->pos().x());
   setMouseY(e->pos().y());
+}
+
+void PatternGrid::updatePatternGrid()
+{
+  for (int i = 0; i < rows(); i++) {
+    for (int j = 0; j < columns(); j++) {
+      if (!cells.contains(QPoint(j, i))) {
+        cells.insert(QPoint(j, i), new PatternGridObject(j, i));
+        cells.value(QPoint(j, i))->setRect(QRect((j * cellWidth()) + leftMargin(), (i * cellWidth()) + topMargin(), cellWidth(), cellHeight()));
+      }
+    }
+  }
+}
+
+void PatternGrid::updatePatternCellSize()
+{
+  for (int i = 0; i < rows(); i++) {
+    for (int j = 0; j < columns(); j++) {
+      if (cells.contains(QPoint(j, i))) {
+        QRect rect = cells.value(QPoint(j, i))->getRect();
+        rect.setSize(QSize(cellWidth(), cellHeight()));
+        rect.setTopLeft(QPoint((j * cellWidth()) + leftMargin(), (i * cellHeight()) + topMargin()));
+        rect.setBottomRight(rect.topLeft() + QPoint(cellWidth(), cellHeight()));
+        cells.value(QPoint(j, i))->setRect(rect);
+      }
+    }
+  }
 }

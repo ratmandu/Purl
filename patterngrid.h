@@ -84,6 +84,9 @@ public:
 private:
   QHash<QPoint, PatternGridObject*> cells;
 
+  void updatePatternGrid();
+  void updatePatternCellSize();
+
 signals:
   void rowsChanged(int arg);
   void columnsChanged(int arg);
@@ -103,6 +106,7 @@ public slots:
     if (m_rows != arg) {
       m_rows = arg;
       emit rowsChanged(arg);
+      updatePatternGrid();
       update();
     }
   }
@@ -111,6 +115,7 @@ public slots:
     if (m_columns != arg) {
       m_columns = arg;
       emit columnsChanged(arg);
+      updatePatternGrid();
       update();
     }
   }
@@ -119,6 +124,7 @@ public slots:
     if (m_cellWidth != arg) {
       m_cellWidth = arg;
       emit cellWidthChanged(arg);
+      updatePatternCellSize();
       update();
     }
   }
@@ -127,6 +133,7 @@ public slots:
     if (m_cellHeight != arg) {
       m_cellHeight = arg;
       emit cellHeightChanged(arg);
+      updatePatternCellSize();
       update();
     }
   }
