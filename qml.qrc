@@ -8,5 +8,7 @@
         <file>PatternGridArea.qml</file>
         <file>ToolPalette.qml</file>
         <file>resources/ToolPalette.xml</file>
+        <file>resources/ToolCategory1.xml</file>
+        <file>resources/ToolCategory2.xml</file>
     </qresource>
 </RCC>

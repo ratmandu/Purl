@@ -3,11 +3,15 @@
 	<Categories>
 		<Category>
 			<Name>Category 1</Name>
-			<File>qrc:///ToolCategory1.xml</File>
+			<File>qrc:///resources/ToolCategory1.xml</File>
 		</Category>
 		<Category>
 			<Name>Category 2</Name>
-			<File>qrc:///ToolCategory2.xml</File>
+			<File>qrc:///resources/ToolCategory2.xml</File>
+		</Category>
+		<Category>
+			<Name>Category 3</Name>
+			<File>qrc:///resources/ToolCategory3.xml</File>
 		</Category>
 	</Categories>
 </Purl>
