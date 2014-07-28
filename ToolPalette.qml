@@ -68,10 +68,12 @@ Rectangle {
         }
 
         GridView {
+          id: symbolView
           anchors.fill: parent
           anchors.topMargin: 25
           anchors.leftMargin: 10
           anchors.rightMargin: 10
+          currentIndex: -1
 
           cellWidth: 50
           cellHeight: 50
@@ -80,12 +82,21 @@ Rectangle {
           delegate: Rectangle {
             width: 45
             height: 45
-            color: white
+//            color: "white"
+            color: "transparent"
+
             Text {
               anchors.centerIn: parent
               text: symbolName
             }
+
+            MouseArea {
+              anchors.fill: parent
+              onClicked: symbolView.currentIndex = index
+            }
           }
+          highlight: Rectangle { color: "lightgrey"; radius: 5 }
+          focus: true
         }
       }
     }

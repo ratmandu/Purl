@@ -10,5 +10,6 @@
         <file>resources/ToolPalette.xml</file>
         <file>resources/ToolCategory1.xml</file>
         <file>resources/ToolCategory2.xml</file>
+        <file>resources/ToolCategory3.xml</file>
     </qresource>
 </RCC>
