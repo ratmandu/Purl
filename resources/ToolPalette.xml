@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Purl>
+	<Categories>
+		<Category>
+			<Name>Category 1</Name>
+			<File>qrc:///ToolCategory1.xml</File>
+		</Category>
+		<Category>
+			<Name>Category 2</Name>
+			<File>qrc:///ToolCategory2.xml</File>
+		</Category>
+	</Categories>
+</Purl>
