@@ -5,4 +5,8 @@ Rectangle {
   height: parent.height
 
   color: "grey"
+
+  ToolPalette {
+
+  }
 }

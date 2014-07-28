@@ -17,3 +17,4 @@ include(deployment.pri)
 HEADERS += \
     patterngrid.h \
     patterngridobject.h
+

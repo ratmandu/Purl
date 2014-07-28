@@ -6,5 +6,7 @@
         <file>PatternGridToolbar.qml</file>
         <file>PurlLeftBar.qml</file>
         <file>PatternGridArea.qml</file>
+        <file>ToolPalette.qml</file>
+        <file>ToolPalette.xml</file>
     </qresource>
 </RCC>
