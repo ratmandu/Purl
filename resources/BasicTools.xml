@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Purl>
+	<Symbols>
+		<Symbol>
+			<Name>Knit</Name>
+			<svgResource>qrc:///resources/symbols/knit/knit.svg</svgResource>
+			<description>knit on RS; purl on WS</description>
+			<width>1</width>
+			<height>1</height>
+		</Symbol>
+		<Symbol>
+			<Name>Purl</Name>
+			<svgResource>qrc:///resources/symbols/purl/purl.svg</svgResource>
+			<description>Purl on RS; knit on WS</description>
+			<width>1</width>
+			<height>1</height>
+		</Symbol>
+	</Symbols>
+</Purl>

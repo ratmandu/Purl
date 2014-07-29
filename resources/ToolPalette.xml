@@ -2,8 +2,8 @@
 <Purl>
 	<Categories>
 		<Category>
-			<Name>Category 1</Name>
-			<File>qrc:///resources/ToolCategory1.xml</File>
+			<Name>Basic</Name>
+			<File>qrc:///resources/BasicTools.xml</File>
 		</Category>
 		<Category>
 			<Name>Category 2</Name>
