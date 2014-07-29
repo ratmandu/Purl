@@ -11,5 +11,6 @@
         <file>resources/ToolCategory1.xml</file>
         <file>resources/ToolCategory2.xml</file>
         <file>resources/ToolCategory3.xml</file>
+        <file>resources/BasicTools.xml</file>
     </qresource>
 </RCC>

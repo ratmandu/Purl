@@ -65,6 +65,7 @@ Rectangle {
           query: "/Purl/Symbols/Symbol"
 
           XmlRole { name: "symbolName"; query: "Name/string()" }
+          XmlRole { name: "resource"; query: "svgResource/string()" }
         }
 
         GridView {
@@ -79,21 +80,37 @@ Rectangle {
           cellHeight: 50
 
           model: delegateModel
-          delegate: Rectangle {
-            width: 45
-            height: 45
-//            color: "white"
-            color: "transparent"
+          delegate: Column {
+            width: parent.cellWidth
+            height: parent.cellHeight
 
+            Rectangle {
+              id: imgRect
+              width: 40
+              height: 40
+              color: "transparent"
+//              color: "white"
+
+              Image {
+                anchors.fill: parent
+                id: "symbol"
+                source: resource
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                onClicked: symbolView.currentIndex = index
+              }
+            }
             Text {
-              anchors.centerIn: parent
+              horizontalAlignment: Text.AlignHCenter
+              anchors.left: imgRect.left
+              anchors.top: imgRect.bottom
+              width: imgRect.width
+
               text: symbolName
             }
 
-            MouseArea {
-              anchors.fill: parent
-              onClicked: symbolView.currentIndex = index
-            }
           }
           highlight: Rectangle { color: "lightgrey"; radius: 5 }
           focus: true
