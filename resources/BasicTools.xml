@@ -15,5 +15,19 @@
 			<width>1</width>
 			<height>1</height>
 		</Symbol>
+		<Symbol>
+			<Name>ktbl</Name>
+			<svgResource>qrc:///resources/symbols/ktbl/ktbl.svg</svgResource>
+			<description>knit through back loop</description>
+			<width>1</width>
+			<height>1</height>
+		</Symbol>
+		<Symbol>
+			<Name>ptbl</Name>
+			<svgResource>qrc:///resources/symbols/ptbl/ptbl.svg</svgResource>
+			<description>purl through back loop</description>
+			<width>1</width>
+			<height>1</height>
+		</Symbol>
 	</Symbols>
 </Purl>
